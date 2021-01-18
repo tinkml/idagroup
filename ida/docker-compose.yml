@@ -1,0 +1,16 @@
+version: "3.8"
+
+volumes:
+  ida:
+
+services:
+  core:
+    build: .
+    container_name: ida
+    hostname: ida
+    network_mode: host
+    env_file:
+      - ./global.env
+    ports:
+      - "8000:8000"
+    command: python manage.py runserver 127.0.0.1:8000
