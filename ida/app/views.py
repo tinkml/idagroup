@@ -3,7 +3,8 @@ from django.shortcuts import render
 
 from .enums import FileFormats
 from .forms import UploadFileForm, EditImageForm
-from .logic import upload_file_to_os, reformat_file_name, download_file, resize_image
+from .logic import upload_file_to_os, download_file, resize_image
+from .utils import reformat_file_name
 from .service import ServiceImage, ServiceResizedImage
 from .settings import ADDRESS
 

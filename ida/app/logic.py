@@ -2,19 +2,16 @@ from PIL import Image
 from django.core.files import File
 
 from .settings import FILE_PATH
+from .utils import check_url
 
 
 def upload_file_to_os(file: File, filename: str) -> None:
     """Сохранение файла в ОС"""
     full_file_name = f'{FILE_PATH}/{filename}'
+    check_url(full_file_name)
     with open(full_file_name, 'wb+') as new_file:
         for chunk in file.chunks():
             new_file.write(chunk)
-
-
-def reformat_file_name(file_name: str) -> str:
-    new_file_name = file_name.strip().replace(' ', '_').split('.')[0]
-    return new_file_name
 
 
 def download_file(url: str):
@@ -46,6 +43,7 @@ def resize_image(file_name: str, new_width: int = None, new_height: int = None) 
         new_height = round(new_width / aspect_ratio)
 
     resize = img.resize((new_width, new_height), Image.ANTIALIAS)
+    check_url(resized_file_path)
     resize.save(resized_file_path)
 
     return resized_file_name
