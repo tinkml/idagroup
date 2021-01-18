@@ -1,0 +1,22 @@
+{% extends 'app/base.html' %}
+
+{% block content%}
+
+    <div>
+        {% csrf_token %}
+        <div>Оригинальные изображения</div>
+        {% for i in images %}
+            <a href="/static/media/{{ i.name }}.{{ i.file_format }}">{{ i.name }}.{{ i.file_format }}</a>
+        {% endfor %}
+
+        <div>Отредактированные изображения</div>
+        {% for i in resized_images %}
+            <a href="/static/media/{{ i.name }}">{{ i.name }}</a>
+        {% endfor %}
+
+        <div>
+            <a href="{% url 'upload'%}" type="button" name="return">Добавить изображение</a>
+        </div>
+    </div>
+
+{% endblock %}

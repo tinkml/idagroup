@@ -1,0 +1,21 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content%}
+
+    <div>
+        Изменение изображения
+        <form action="" class="form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div>
+                <button type="submit" name="send">
+                    Send
+                </button>
+            </div>
+        </form>
+        </div>
+        <a href="{% url 'images'%}" type="button" name="return">Вернуться на главную</a>
+        <img src="{{ image_url }}">
+    </div>
+
+{% endblock %}

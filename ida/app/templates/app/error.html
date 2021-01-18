@@ -1,0 +1,11 @@
+{% extends 'app/base.html' %}
+
+{% block content%}
+
+    <div>
+        {% csrf_token %}
+        {{ error }}
+        <a href="{% url 'upload'%}" type="button" name="return">Вернуться на главную</a>
+    </div>
+
+{% endblock %}
